@@ -21,7 +21,7 @@
 //    @Override
 //    public View getView(int position, View convertView, ViewGroup parent) {
 //
-//        Memo memo = getItem(position);
+//        Memo memory = getItem(position);
 //
 //        if (convertView == null) {
 //            convertView = layoutinflater.inflate(R.layout.layout_item_memo, null);
@@ -30,8 +30,8 @@
 //        TextView titleText = (TextView) convertView.findViewById(R.id.titleText);
 //        TextView contentText = (TextView) convertView.findViewById(R.id.contentText);
 //
-//        titleText.setText(memo.title);
-//        contentText.setText(memo.content);
+//        titleText.setText(memory.title);
+//        contentText.setText(memory.content);
 //
 //        return convertView;
 //    }

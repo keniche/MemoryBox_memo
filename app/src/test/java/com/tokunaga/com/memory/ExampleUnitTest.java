@@ -1,4 +1,4 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.com.memory;
 
 import org.junit.Test;
 

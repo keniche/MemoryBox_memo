@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "android.lifeistech.com.memo"
+        applicationId "com.tokunaga.kensun.memory"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1

@@ -1,4 +1,4 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.com.memory;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("android.lifeistech.com.memo", appContext.getPackageName());
+        assertEquals("android.tokunaga.com.memory", appContext.getPackageName());
     }
 }

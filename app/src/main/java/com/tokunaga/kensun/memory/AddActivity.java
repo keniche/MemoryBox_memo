@@ -1,6 +1,7 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.kensun.memory;
 
 
+import com.tokunaga.kensun.memory.R;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;

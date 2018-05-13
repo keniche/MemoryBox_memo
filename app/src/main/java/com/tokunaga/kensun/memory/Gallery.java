@@ -1,4 +1,4 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.kensun.memory;
 
 public class Gallery {
     public int imageId;

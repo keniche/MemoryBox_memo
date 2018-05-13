@@ -1,4 +1,4 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.kensun.memory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

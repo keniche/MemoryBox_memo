@@ -1,4 +1,4 @@
-package android.lifeistech.com.memo;
+package com.tokunaga.kensun.memory;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
