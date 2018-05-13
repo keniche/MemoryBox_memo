@@ -16,10 +16,9 @@ public class AddActivity extends AppCompatActivity {
     EditText titleEditText;
     EditText dateEditText;
     EditText folderEditText;
-    EditText memoEditText;
+    EditText episodeEditText;
 
     public Realm realm;
-
 
 
     @Override
@@ -27,18 +26,16 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        //realm = Realm.getDefaultInstance();
-        //TODO:ここが悪さしてる！！
+        realm = Realm.getDefaultInstance();
 
-        ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
-        titleEditText = (EditText)findViewById(R.id.titleEditText);
-        dateEditText = (EditText)findViewById(R.id.dateEditText);
-        folderEditText = (EditText)findViewById(R.id.folderEditText);
-        memoEditText = (EditText)findViewById(R.id.memoEditText);
-
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        titleEditText = (EditText) findViewById(R.id.titleEditText);
+        dateEditText = (EditText) findViewById(R.id.dateEditText);
+        folderEditText = (EditText) findViewById(R.id.folderEditText);
+        episodeEditText = (EditText) findViewById(R.id.episodeEditText);
 
 
-        int[] imageList ={R.drawable.icon_grey_1,
+        int[] imageList = {R.drawable.icon_grey_1,
                 R.drawable.icon_grey_2,
                 R.drawable.icon_grey_3,
                 R.drawable.icon_grey_4,
@@ -49,36 +46,37 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-//    public void save(final byte[] pictures, final int position){
-//        realm.executeTransaction(new Realm.Transaction() {
-//            @Override
-//            public void execute(Realm realm) {
-//                Memo memo = realm.createObject(Memo.class);
-//                memo.pictures = pictures;
-//                memo.position = position;
-//            }
-//        });
-//    }
-
-    public void add (View v){
-        String title = titleEditText.getText().toString();
-        String date = dateEditText.getText().toString();
-        String folder = titleEditText.getText().toString();
-        String memo = titleEditText.getText().toString();
-
-        //save(picture, position);
-        finish();
+    //Realmのsaveメソッド
+    public void save(final String title,final String date, final String folder, final String episode) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Memo memo = realm.createObject(Memo.class);
+                memo.title = title;
+                memo.date =  date;
+                memo.folder = folder;
+                memo.episode = episode;
+            }
+        });
     }
 
 
+    public void add(View v) {
+        String title = titleEditText.getText().toString();
+        String date = dateEditText.getText().toString();
+        String folder = folderEditText.getText().toString();
+        String episode = episodeEditText.getText().toString();
+
+        save(title, date, folder, episode);
+        finish();
+    }
 
     //Realmを閉じる
-//    @Override
-//    public void onDestroy(){
-//        super.onDestroy();
-//
-//        realm.close();
-//    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-
+        realm.close();
+    }
 }
+
