@@ -18,13 +18,14 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
-
+    public Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        realm = Realm.getDefaultInstance();
     }
 
 
@@ -33,5 +34,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void setMemoList(){
+        //
+        RealmResults<Memo> results = realm.where(Memo.class).findAll();
+        List<Memo> items = realm.copyFromRealm(results);
 
+        //byteをbitmapに変換
+
+    }
+
+
+
+
+
+
+
+    //Realmを閉じる
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        realm.close();
+    }
 }

@@ -4,10 +4,16 @@ import io.realm.RealmObject;
 
 public class Memo extends RealmObject {
 
-    public byte[] pictures;
-    //public int position;
+    public byte picture1;
+    public byte picture2;
+    public byte picture3;
+    public byte picture4;
+    public byte picture5;
+
+    public String updateDate;
+
     String title = "";
-    String date = "";
+    String time = "";
     String folder = "";
     String episode = "";
 }

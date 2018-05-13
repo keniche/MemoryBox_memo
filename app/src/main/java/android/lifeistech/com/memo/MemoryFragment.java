@@ -70,16 +70,7 @@ public class MemoryFragment extends Fragment {
 
 
 
-    //Realmのsaveメソッド
-    public void save(final byte[] pictures) {
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                Memo memo = realm.createObject(Memo.class);
-                memo.pictures = pictures;
-            }
-        });
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -98,9 +89,7 @@ public class MemoryFragment extends Fragment {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 byte[] pictures = bos.toByteArray();
 
-                //byteをRealmに保存
-                save(pictures);
-
+                //Realmには保存しない
 
             } catch (Exception e) {
                 Toast.makeText(getActivity(), "エラー", Toast.LENGTH_LONG).show();

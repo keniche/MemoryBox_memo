@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import io.realm.Realm;
 
 public class AddActivity extends AppCompatActivity {
@@ -14,7 +18,7 @@ public class AddActivity extends AppCompatActivity {
     //static final int REQUEST_CODE_CAMERA = 2;
 
     EditText titleEditText;
-    EditText dateEditText;
+    EditText timeEditText;
     EditText folderEditText;
     EditText episodeEditText;
 
@@ -30,7 +34,7 @@ public class AddActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         titleEditText = (EditText) findViewById(R.id.titleEditText);
-        dateEditText = (EditText) findViewById(R.id.dateEditText);
+        timeEditText = (EditText) findViewById(R.id.timeEditText);
         folderEditText = (EditText) findViewById(R.id.folderEditText);
         episodeEditText = (EditText) findViewById(R.id.episodeEditText);
 
@@ -47,27 +51,42 @@ public class AddActivity extends AppCompatActivity {
     }
 
     //Realmのsaveメソッド
-    public void save(final String title,final String date, final String folder, final String episode) {
+    public void save(final byte picture1, final byte picture2, final byte picture3, final byte picture4, final byte picture5, final String updateDate, final String title,final String time, final String folder, final String episode) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 Memo memo = realm.createObject(Memo.class);
+                memo.picture1 = picture1;
+                memo.picture2 = picture2;
+                memo.picture3 = picture3;
+                memo.picture4 = picture4;
+                memo.picture5 = picture5;
+
+                memo.updateDate = updateDate;
+
                 memo.title = title;
-                memo.date =  date;
+                memo.time =  time;
                 memo.folder = folder;
                 memo.episode = episode;
             }
         });
     }
 
-
     public void add(View v) {
         String title = titleEditText.getText().toString();
-        String date = dateEditText.getText().toString();
+        String time = timeEditText.getText().toString();
         String folder = folderEditText.getText().toString();
         String episode = episodeEditText.getText().toString();
 
-        save(title, date, folder, episode);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE);
+        String updateDate = sdf.format(date);
+
+        //save(picture1, );
+
+        //TODO:saveメソッドを整える、変数の被りについて処理する。
+
+
         finish();
     }
 
