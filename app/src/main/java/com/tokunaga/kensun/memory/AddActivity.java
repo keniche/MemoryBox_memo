@@ -5,6 +5,7 @@ import com.tokunaga.kensun.memory.R;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,7 +15,7 @@ import java.util.Locale;
 
 import io.realm.Realm;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity implements MemoryFragment.MemoryFragmentListener {
     static final int REQUEST_CODE_GALLERY = 1;
     //static final int REQUEST_CODE_CAMERA = 2;
 
@@ -23,7 +24,15 @@ public class AddActivity extends AppCompatActivity {
     EditText folderEditText;
     EditText episodeEditText;
 
+    byte[] pictures;
+
     public Realm realm;
+
+
+    @Override
+    public void dataDeliver(byte[] picture) {
+        this.pictures = picture;
+    }
 
 
     @Override
@@ -48,20 +57,19 @@ public class AddActivity extends AppCompatActivity {
 
         FragmentAdapter pagerAdapter = new FragmentAdapter(getSupportFragmentManager(), imageList);
         viewPager.setAdapter(pagerAdapter);
-
     }
 
+
+
+
+
     //Realmのsaveメソッド
-    public void save(final byte picture1, final byte picture2, final byte picture3, final byte picture4, final byte picture5, final String updateDate, final String title,final String time, final String folder, final String episode) {
+    public void save(final byte[] pictures, final String updateDate, final String title,final String time, final String folder, final String episode) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 Memo memo = realm.createObject(Memo.class);
-                memo.picture1 = picture1;
-                memo.picture2 = picture2;
-                memo.picture3 = picture3;
-                memo.picture4 = picture4;
-                memo.picture5 = picture5;
+                memo.pictures = pictures;
 
                 memo.updateDate = updateDate;
 
@@ -83,10 +91,7 @@ public class AddActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE);
         String updateDate = sdf.format(date);
 
-        //save(picture1, );
-
-        //TODO:saveメソッドを整える、変数の被りについて処理する。
-
+        save(pictures, updateDate, title, time, folder, episode);
 
         finish();
     }
@@ -98,5 +103,7 @@ public class AddActivity extends AppCompatActivity {
 
         realm.close();
     }
+
+
 }
 

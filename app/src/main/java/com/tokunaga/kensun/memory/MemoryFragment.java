@@ -1,5 +1,6 @@
 package com.tokunaga.kensun.memory;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,6 +26,20 @@ public class MemoryFragment extends Fragment {
     ImageView imageView;
     public Realm realm;
 
+    MemoryFragmentListener mListener;
+    View mNextBtn;
+
+
+    //インターフェイスの定義
+    public interface MemoryFragmentListener{
+        public void dataDeliver(byte[] picture);
+    }
+
+    @Override
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+        mListener = (MemoryFragmentListener) activity;
+    }
 
     //Realmを開く
     @Override
@@ -66,10 +81,7 @@ public class MemoryFragment extends Fragment {
         return view;
     }
 
-
-
-
-
+    //ギャラリー起動後の処理
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -87,6 +99,8 @@ public class MemoryFragment extends Fragment {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 byte[] pictures = bos.toByteArray();
 
+                mListener.dataDeliver(pictures);
+
                 //Realmには保存しない
 
             } catch (Exception e) {
@@ -96,6 +110,11 @@ public class MemoryFragment extends Fragment {
             Toast.makeText(getActivity(), "CANCELED", Toast.LENGTH_LONG).show();
         }
     }
+
+
+
+
+
 
     //Realmを閉じる
     @Override
