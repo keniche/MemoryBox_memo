@@ -2,6 +2,7 @@ package com.tokunaga.kensun.memory;
 
 
 import com.tokunaga.kensun.memory.R;
+
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -29,11 +30,6 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
     public Realm realm;
 
 
-    @Override
-    public void dataDeliver(byte[] picture) {
-        this.pictures = picture;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +55,15 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
         viewPager.setAdapter(pagerAdapter);
     }
 
-
-
+    //Fragmentからpictureの情報をActivityに情報を渡すメソッド
+    @Override
+    public void dataDeliver(byte[] picture) {
+        this.pictures = picture;
+    }
 
 
     //Realmのsaveメソッド
-    public void save(final byte[] pictures, final String updateDate, final String title,final String time, final String folder, final String episode) {
+    public void save(final byte[] pictures, final String updateDate, final String title, final String time, final String folder, final String episode) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -74,7 +73,7 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
                 memo.updateDate = updateDate;
 
                 memo.title = title;
-                memo.time =  time;
+                memo.time = time;
                 memo.folder = folder;
                 memo.episode = episode;
             }

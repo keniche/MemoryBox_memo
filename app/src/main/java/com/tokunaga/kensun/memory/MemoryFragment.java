@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 import com.tokunaga.kensun.memory.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+
 import io.realm.Realm;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -27,16 +32,16 @@ public class MemoryFragment extends Fragment {
     public Realm realm;
 
     MemoryFragmentListener mListener;
-    View mNextBtn;
 
 
     //インターフェイスの定義
-    public interface MemoryFragmentListener{
+    public interface MemoryFragmentListener {
         public void dataDeliver(byte[] picture);
     }
 
+    //データ渡す準備
     @Override
-    public void onAttach(Activity activity){
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         mListener = (MemoryFragmentListener) activity;
     }
@@ -110,10 +115,6 @@ public class MemoryFragment extends Fragment {
             Toast.makeText(getActivity(), "CANCELED", Toast.LENGTH_LONG).show();
         }
     }
-
-
-
-
 
 
     //Realmを閉じる
