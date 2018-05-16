@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Memo> tmp;
     ArrayAdapter galleryAdapter;
 
+    //空のarray
+    ArrayList<Gallery> transArray;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +34,23 @@ public class MainActivity extends AppCompatActivity {
 
         realm = Realm.getDefaultInstance();
 
-        ListView listView = (ListView)findViewById(R.id.listView);
-
         memoArray = new ArrayList<Memo>();
         adpArray = new ArrayList<Gallery>();
         tmp = new ArrayList<Memo>();
 
-        //TODO:Adapterの第三引数をなしにしたものをつくって、表示しとく
+        transArray = new ArrayList<Gallery>();
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+        //TODO:Adapterの第三引数をなしにしたものをつくって、表示しとく（byづめさん）
+        //TODO:adpArrayをせっかくつくったのに、customAdapterのコンストラクタの第三引数のobjectとして、adpArrayを渡さないの?
+        //TODO:とりあえず、空のtransArrayを渡してみた。
+        galleryAdapter = new GalleryAdapter(this, R.layout.gallery, transArray);
+        listView.setAdapter(galleryAdapter);
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         set();
@@ -52,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Realmから情報を取り出して変数に入れとく
+    //Realmから情報を取り出してArrayListに入れる
     public void set() {
         memoArray.clear();
         RealmResults<Memo> results = realm.where(Memo.class).findAll();
@@ -61,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //AdapterModelを作る
+    //AdapterModelを作り、adpArrayにつっこむ
     public void galleryCreate() {
         Memo trans = new Memo();
         tmp.clear();
@@ -71,18 +80,15 @@ public class MainActivity extends AppCompatActivity {
             tmp.add(memoArray.get(i));
 
             if (i % 3 == 2) {
-                Gallery adp = new Gallery(tmp.get(0), tmp.get(1), tmp.get(2));
-                adpArray.add(adp);
+                adpArray.add(new Gallery(tmp.get(0), tmp.get(1), tmp.get(2)));
                 tmp.clear();
             }
             if (i == memoArray.size() - 1) {
                 if (tmp.size() == 1) {
-                    Gallery adp = new Gallery(tmp.get(0), trans, trans);
-                    adpArray.add(adp);
+                    adpArray.add(new Gallery(tmp.get(0), trans, trans));
                     tmp.clear();
                 } else if (tmp.size() == 2) {
-                    Gallery adp = new Gallery(tmp.get(0), tmp.get(1), trans);
-                    adpArray.add(adp);
+                    adpArray.add(new Gallery(tmp.get(0), tmp.get(1), trans));
                     tmp.clear();
                 }
             }

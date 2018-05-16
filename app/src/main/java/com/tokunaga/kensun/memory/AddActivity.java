@@ -25,10 +25,13 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
     EditText folderEditText;
     EditText episodeEditText;
 
-    byte[] pictures;
+    byte[] pictures1;
+    byte[] pictures2;
+    byte[] pictures3;
+    byte[] pictures4;
+    byte[] pictures5;
 
     public Realm realm;
-
 
 
     @Override
@@ -57,18 +60,22 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
 
     //Fragmentからpictureの情報をActivityに情報を渡すメソッド
     @Override
-    public void dataDeliver(byte[] picture) {
-        this.pictures = picture;
+    public void dataDeliver(byte[] picture1) {
+        this.pictures1 = picture1;
     }
 
 
     //Realmのsaveメソッド
-    public void save(final byte[] pictures, final String updateDate, final String title, final String time, final String folder, final String episode) {
+    public void save(final byte[] pictures1, final byte[] pictures2, final byte[] pictures3, final byte[] pictures4, final byte[] pictures5, final String updateDate, final String title, final String time, final String folder, final String episode) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 Memo memo = realm.createObject(Memo.class);
-                memo.pictures = pictures;
+                memo.pictures1 = pictures1;
+                memo.pictures2 = pictures2;
+                memo.pictures3 = pictures3;
+                memo.pictures4 = pictures4;
+                memo.pictures5 = pictures5;
 
                 memo.updateDate = updateDate;
 
@@ -90,7 +97,7 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE);
         String updateDate = sdf.format(date);
 
-        save(pictures, updateDate, title, time, folder, episode);
+        save(pictures1, pictures2, pictures3, pictures4, pictures5, updateDate, title, time, folder, episode);
 
         finish();
     }

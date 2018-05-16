@@ -36,7 +36,7 @@ public class MemoryFragment extends Fragment {
 
     //インターフェイスの定義
     public interface MemoryFragmentListener {
-        public void dataDeliver(byte[] picture);
+        public void dataDeliver(byte[] picture1);
     }
 
     //データ渡す準備
@@ -102,9 +102,9 @@ public class MemoryFragment extends Fragment {
                 //bitmapをbyteに変える
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-                byte[] pictures = bos.toByteArray();
+                byte[] pictures1 = bos.toByteArray();
 
-                mListener.dataDeliver(pictures);
+                mListener.dataDeliver(pictures1);
 
                 //Realmには保存しない
 
