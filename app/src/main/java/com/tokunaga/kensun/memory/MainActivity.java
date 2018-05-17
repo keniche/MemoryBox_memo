@@ -6,6 +6,7 @@ import com.tokunaga.kensun.memory.R;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Memo> tmp;
     ArrayAdapter galleryAdapter;
 
-    //空のarray
-    ArrayList<Gallery> transArray;
 
 
     @Override
@@ -38,24 +37,19 @@ public class MainActivity extends AppCompatActivity {
         adpArray = new ArrayList<Gallery>();
         tmp = new ArrayList<Memo>();
 
-        transArray = new ArrayList<Gallery>();
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        //TODO:Adapterの第三引数をなしにしたものをつくって、表示しとく（byづめさん）
-        //TODO:adpArrayをせっかくつくったのに、customAdapterのコンストラクタの第三引数のobjectとして、adpArrayを渡さないの?
-        //TODO:とりあえず、空のtransArrayを渡してみた。
-        galleryAdapter = new GalleryAdapter(this, R.layout.gallery, transArray);
+        galleryAdapter = new GalleryAdapter(this, R.layout.gallery, adpArray);
         listView.setAdapter(galleryAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         set();
         galleryCreate();
-
+        Log.e("TAG@",adpArray.toString());
         //Adapter内のデータが変更されたことを通知し、もう一度構成し直す。
         galleryAdapter.notifyDataSetChanged();
     }
@@ -67,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         RealmResults<Memo> results = realm.where(Memo.class).findAll();
         List<Memo> item = realm.copyFromRealm(results);
         memoArray.addAll(item);
+        Log.e("TAG",memoArray.toString());
     }
-
 
     //AdapterModelを作り、adpArrayにつっこむ
     public void galleryCreate() {
@@ -85,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
             }
             if (i == memoArray.size() - 1) {
                 if (tmp.size() == 1) {
-                    adpArray.add(new Gallery(tmp.get(0), trans, trans));
+                    adpArray.add(new Gallery(tmp.get(0), new Memo(), new Memo()));
                     tmp.clear();
                 } else if (tmp.size() == 2) {
-                    adpArray.add(new Gallery(tmp.get(0), tmp.get(1), trans));
+                    adpArray.add(new Gallery(tmp.get(0), tmp.get(1), new Memo()));
                     tmp.clear();
                 }
             }

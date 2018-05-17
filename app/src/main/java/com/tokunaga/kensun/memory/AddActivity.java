@@ -16,7 +16,7 @@ import java.util.Locale;
 
 import io.realm.Realm;
 
-public class AddActivity extends AppCompatActivity implements MemoryFragment.MemoryFragmentListener {
+public class AddActivity extends AppCompatActivity {
     static final int REQUEST_CODE_GALLERY = 1;
     //static final int REQUEST_CODE_CAMERA = 2;
 
@@ -25,13 +25,9 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
     EditText folderEditText;
     EditText episodeEditText;
 
-    byte[] pictures1;
-    byte[] pictures2;
-    byte[] pictures3;
-    byte[] pictures4;
-    byte[] pictures5;
-
     public Realm realm;
+
+    FragmentAdapter pagerAdapter;
 
 
     @Override
@@ -54,15 +50,19 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
                 R.drawable.icon_grey_4,
                 R.drawable.icon_grey_5};
 
-        FragmentAdapter pagerAdapter = new FragmentAdapter(getSupportFragmentManager(), imageList);
+        pagerAdapter = new FragmentAdapter(getSupportFragmentManager(), imageList);
         viewPager.setAdapter(pagerAdapter);
+
+        //ViewPagerの両側の情報
+        viewPager.setOffscreenPageLimit(4);
     }
 
-    //Fragmentからpictureの情報をActivityに情報を渡すメソッド
-    @Override
-    public void dataDeliver(byte[] picture1) {
-        this.pictures1 = picture1;
-    }
+
+//    //Fragmentからpictureの情報をActivityに情報を渡すメソッド
+//    @Override
+//    public void dataDeliver(byte[] picture1) {
+//        this.pictures1 = picture1;
+//    }
 
 
     //Realmのsaveメソッド
@@ -87,6 +87,7 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
         });
     }
 
+
     public void add(View v) {
         String title = titleEditText.getText().toString();
         String time = timeEditText.getText().toString();
@@ -97,10 +98,17 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE);
         String updateDate = sdf.format(date);
 
+        byte[] pictures1 = ((MemoryFragment) pagerAdapter.getFragment(0)).getImage();
+        byte[] pictures2 = ((MemoryFragment) pagerAdapter.getFragment(1)).getImage();
+        byte[] pictures3 = ((MemoryFragment) pagerAdapter.getFragment(2)).getImage();
+        byte[] pictures4 = ((MemoryFragment) pagerAdapter.getFragment(3)).getImage();
+        byte[] pictures5 = ((MemoryFragment) pagerAdapter.getFragment(4)).getImage();
+
         save(pictures1, pictures2, pictures3, pictures4, pictures5, updateDate, title, time, folder, episode);
 
         finish();
     }
+
 
     //Realmを閉じる
     @Override
@@ -110,6 +118,13 @@ public class AddActivity extends AppCompatActivity implements MemoryFragment.Mem
         realm.close();
     }
 
-
 }
+
+
+
+
+
+
+
+
 

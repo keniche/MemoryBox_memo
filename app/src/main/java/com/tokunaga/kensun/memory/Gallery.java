@@ -11,4 +11,13 @@ public class Gallery {
         this.memo2 = memo2;
         this.memo3 = memo3;
     }
+
+    @Override
+    public String toString() {
+        return "Gallery{" +
+                "memo1=" + memo1 +
+                ", memo2=" + memo2 +
+                ", memo3=" + memo3 +
+                '}';
+    }
 }

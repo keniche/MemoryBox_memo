@@ -49,17 +49,6 @@ public class GalleryAdapter extends ArrayAdapter<Gallery> {
         }
     }
 
-    //TODO:Realmから何をどうやって取り出して、どこにいれておけばいい？→この処理自体不必要かも
-//    //→memo型のGalleryクラスを
-//    //→picture1を取り出して、配列にでも入れておけばいい？
-//    //下の方でitem.memo1.picture1とかで認識されてるのを見ると、そもそもRealmから取り出すことは不要？
-//    public void set() {
-//        memoArray.clear();
-//        RealmResults<Memo> results = realm.where(Memo.class).findAll();
-//        List<Memo> item = realm.copyFromRealm(results);
-//        memoArray.addAll(item);
-//    }
-
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -79,20 +68,20 @@ public class GalleryAdapter extends ArrayAdapter<Gallery> {
 
 
         if (item != null) {
-            //TODO:下の条件分岐に自信がない。づめさんが言ってた、mainActivityに空の画像が表示される可能性を考えた条件分岐を作りたい。
-            if (item.memo1.pictures1 != null) {
-
-                //byte[]をbitmapに変更
-                //TODO：なんで、ここでpicture1が認識されてるの？よくよく考えたら、Realmから取り出してないのに。いや、行けて当たり前？それなら、上の方でRealmから取り出すなんて処理いらない？
-                //TODO:ここの処理が間違えている可能性？
-                Bitmap bitmap1 = BitmapFactory.decodeByteArray(item.memo1.pictures1, 0, item.memo1.pictures1.length);
-                Bitmap bitmap2 = BitmapFactory.decodeByteArray(item.memo2.pictures1, 0, item.memo2.pictures1.length);
-                Bitmap bitmap3 = BitmapFactory.decodeByteArray(item.memo3.pictures1, 0, item.memo3.pictures1.length);
-
-                //TODO:ここのsetImageBitmapは合ってる？
-                viewHolder.imageView1.setImageBitmap(bitmap1);
-                viewHolder.imageView2.setImageBitmap(bitmap2);
-                viewHolder.imageView3.setImageBitmap(bitmap3);
+            if (item.memo1.pictures1.length != 0) {
+                //byte[]をbitmapに変更、setする。
+                Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo1.pictures1, 0, item.memo1.pictures1.length);
+                viewHolder.imageView1.setImageBitmap(bitmap);
+            }
+            if (item.memo2.pictures1.length != 0) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo2.pictures1, 0, item.memo2.pictures1.length);
+                viewHolder.imageView2.setImageBitmap(bitmap);
+            }
+            if (item.memo3.pictures1.length != 0) {
+                //byte[]をbitmapに変更、setする。
+                Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo3.pictures1, 0, item.memo3.pictures1.length);
+                viewHolder.imageView3.setImageBitmap(bitmap);
+            }
 
 
 //            //再度編集するためのonClick。とりあえずコメントアウト。
@@ -100,15 +89,15 @@ public class GalleryAdapter extends ArrayAdapter<Gallery> {
 //                @Override
 //                public void onClick(View view) {
 //                    Intent intent = new Intent(, AddActivity.class);
-                      //TODO:ここの第一引数が分からない
+            //TODO:ここの第一引数が分からない
 //                    startActivity(intent);
-//
 //                }
 //            });
-            }
         }
         return convertView;
         //realm.close();
     }
+
 }
+
 

@@ -2,13 +2,17 @@ package com.tokunaga.kensun.memory;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.tokunaga.kensun.memory.R;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,7 @@ import io.realm.Realm;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
+
 public class MemoryFragment extends Fragment {
     int position;
     static final int REQUEST_CODE_GALLERY = 1;
@@ -31,20 +36,9 @@ public class MemoryFragment extends Fragment {
     ImageView imageView;
     public Realm realm;
 
-    MemoryFragmentListener mListener;
+    byte[] pictures = new byte[0];
 
 
-    //インターフェイスの定義
-    public interface MemoryFragmentListener {
-        public void dataDeliver(byte[] picture1);
-    }
-
-    //データ渡す準備
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mListener = (MemoryFragmentListener) activity;
-    }
 
     //Realmを開く
     @Override
@@ -82,6 +76,15 @@ public class MemoryFragment extends Fragment {
         if (args != null) {
             imageView.setImageResource(args.getInt("image_id"));
             position = args.getInt("position");
+
+
+            Resources res = getContext().getResources();
+            Drawable drawable = res.getDrawable(args.getInt("image_id"));
+            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            pictures = stream.toByteArray();
+
         }
         return view;
     }
@@ -102,9 +105,9 @@ public class MemoryFragment extends Fragment {
                 //bitmapをbyteに変える
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-                byte[] pictures1 = bos.toByteArray();
+                pictures = bos.toByteArray();
 
-                mListener.dataDeliver(pictures1);
+                //mListener.dataDeliver(pictures);
 
                 //Realmには保存しない
 
@@ -121,7 +124,11 @@ public class MemoryFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         realm.close();
+    }
+
+    public byte[] getImage(){
+        Log.e("TAG", String.valueOf(pictures.length));
+        return pictures;
     }
 }
