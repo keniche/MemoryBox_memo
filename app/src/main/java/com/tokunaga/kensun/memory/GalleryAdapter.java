@@ -88,8 +88,8 @@ public class GalleryAdapter extends ArrayAdapter<Gallery> {
 //            viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
-//                    Intent intent = new Intent(, AddActivity.class);
-            //TODO:ここの第一引数が分からない
+//                    Intent intent = new Intent(, ShowActivity.class);
+            //TODO:ここの第一引数が分からない。教科書によると、ListViewに直接OnClickListenerをつけても良さそう
 //                    startActivity(intent);
 //                }
 //            });

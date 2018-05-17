@@ -31,7 +31,6 @@ import static android.app.Activity.RESULT_OK;
 public class MemoryFragment extends Fragment {
     int position;
     static final int REQUEST_CODE_GALLERY = 1;
-    //static final int REQUEST_CODE_CAMERA = 2;
 
     ImageView imageView;
     public Realm realm;
@@ -63,14 +62,6 @@ public class MemoryFragment extends Fragment {
             }
         });
 
-        //カメラの起動をLongClickで実装してみようとした
-//        imageView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public void onLongClick(View v) {
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent, REQUEST_CODE_CAMERA);
-//            }
-//        });
 
         Bundle args = getArguments();
         if (args != null) {
@@ -107,7 +98,6 @@ public class MemoryFragment extends Fragment {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 pictures = bos.toByteArray();
 
-                //mListener.dataDeliver(pictures);
 
                 //Realmには保存しない
 

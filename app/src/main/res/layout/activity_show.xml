@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.tokunaga.kensun.memory.AddActivity">
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="edit"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:onClick="delete"
+        android:text="Delete" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,15 +56,13 @@
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/titleEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -67,16 +82,15 @@
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/timeEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
                 android:textAlignment="center" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -95,15 +109,13 @@
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/folderEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/folderText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -123,15 +135,13 @@
                 android:textAlignment="viewStart"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/episodeEditText"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/episodeText"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:textAlignment="center" />
         </LinearLayout>
 
