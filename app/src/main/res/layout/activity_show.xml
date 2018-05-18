@@ -36,89 +36,190 @@
             android:layout_weight="1"
             app:cardBackgroundColor="#F6FAEC">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/titleText"
+                <LinearLayout
+                    android:id="@+id/editLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="15sp" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/timeText"
+                    <EditText
+                        android:id="@+id/editTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/editTimeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/editFolderText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/editEpisodeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/showLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="15sp" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/folderText"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="titleText"
+                        android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/episodeText"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/timeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="timeText"
+                        android:textSize="15sp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/folderText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="folderText"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/episodeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:text="episodeText"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+            </FrameLayout>
 
         </android.support.v7.widget.CardView>
 
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="16dp"
-            android:orientation="horizontal">
+            android:layout_weight="0.2">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/editButtonLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="2dp"
-                android:layout_weight="0.2"
-                android:onClick="edit"
-                app:cardBackgroundColor="#F6FAEC">
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Edit" />
-            </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.2"
+                    android:onClick="cancel"
+                    app:cardBackgroundColor="#F6FAEC">
 
-            <android.support.v7.widget.CardView
+                    <TextView
+                        android:id="@+id/cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="cancel" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="0.2"
+                    android:onClick="save"
+                    app:cardBackgroundColor="#F6FAEC">
+
+                    <TextView
+                        android:id="@+id/save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="save" />
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/showButtonLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="0.2"
-                android:onClick="add"
-                app:cardBackgroundColor="#F6FAEC">
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Delete" />
-            </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.2"
+                    android:onClick="edit"
+                    app:cardBackgroundColor="#F6FAEC">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="edit" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="0.2"
+                    android:onClick="delete"
+                    app:cardBackgroundColor="#F6FAEC">
+
+                    <TextView
+                        android:id="@+id/delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="delete" />
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+
     </LinearLayout>
 
 </RelativeLayout>

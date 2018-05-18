@@ -16,9 +16,8 @@ import java.util.Locale;
 
 import io.realm.Realm;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity implements MemoryFragmentListener {
     static final int REQUEST_CODE_GALLERY = 1;
-    //static final int REQUEST_CODE_CAMERA = 2;
 
     EditText titleEditText;
     EditText timeEditText;
@@ -118,6 +117,10 @@ public class AddActivity extends AppCompatActivity {
         realm.close();
     }
 
+    @Override
+    public void onReady(int position) {
+
+    }
 }
 
 

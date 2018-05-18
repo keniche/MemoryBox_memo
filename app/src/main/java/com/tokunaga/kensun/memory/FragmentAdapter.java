@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.HashMap;
@@ -30,7 +31,6 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         args.putInt("image_id", mImageList[position]);
         args.putInt("position", position);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -53,8 +53,10 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
     public Fragment getFragment(int position) {
         String tag = mFragmentTags.get(position);
-        if (tag == null)
+        if (tag == null) {
+            Log.e("TAGNull","Null");
             return null;
+        }
         return mFragmentManager.findFragmentByTag(tag);
     }
 

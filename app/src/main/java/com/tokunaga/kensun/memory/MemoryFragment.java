@@ -1,6 +1,8 @@
 package com.tokunaga.kensun.memory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -28,7 +30,7 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 
-public class MemoryFragment extends Fragment {
+public class MemoryFragment extends Fragment implements View.OnClickListener{
     int position;
     static final int REQUEST_CODE_GALLERY = 1;
 
@@ -37,7 +39,7 @@ public class MemoryFragment extends Fragment {
 
     byte[] pictures = new byte[0];
 
-
+    MemoryFragmentListener memoryFragmentListener;
 
     //Realmを開く
     @Override
@@ -53,14 +55,7 @@ public class MemoryFragment extends Fragment {
         View view = inflater.inflate(
                 R.layout.fragment_memory, container, false);
         imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, REQUEST_CODE_GALLERY);
-            }
-        });
+        enableListener(true);
 
 
         Bundle args = getArguments();
@@ -77,6 +72,8 @@ public class MemoryFragment extends Fragment {
             pictures = stream.toByteArray();
 
         }
+
+        memoryFragmentListener.onReady(position);
         return view;
     }
 
@@ -109,6 +106,12 @@ public class MemoryFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        memoryFragmentListener = (MemoryFragmentListener)activity;
+
+    }
 
     //Realmを閉じる
     @Override
@@ -118,7 +121,31 @@ public class MemoryFragment extends Fragment {
     }
 
     public byte[] getImage(){
-        Log.e("TAG", String.valueOf(pictures.length));
+        Bitmap bitmap =  ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        //bitmapをbyteに変える
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        pictures = bos.toByteArray();
         return pictures;
+
+    }
+    public void setImage(Bitmap bitmap){
+        Log.e("TAG",imageView.toString());
+        imageView.setImageBitmap(bitmap);
+    }
+
+    public void enableListener(Boolean enable){
+        if (enable){
+            imageView.setOnClickListener(this);
+        }else {
+            imageView.setOnClickListener(null);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
 }

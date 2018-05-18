@@ -72,27 +72,46 @@ public class GalleryAdapter extends ArrayAdapter<Gallery> {
                 //byte[]をbitmapに変更、setする。
                 Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo1.pictures1, 0, item.memo1.pictures1.length);
                 viewHolder.imageView1.setImageBitmap(bitmap);
+
+                //再度編集するためのonClick。とりあえずコメントアウト。
+                viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(), ShowActivity.class);
+                        intent.putExtra("updateDate", item.memo1.updateDate);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
             if (item.memo2.pictures1.length != 0) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo2.pictures1, 0, item.memo2.pictures1.length);
                 viewHolder.imageView2.setImageBitmap(bitmap);
+
+                //再度編集するためのonClick。とりあえずコメントアウト。
+                viewHolder.imageView2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(), ShowActivity.class);
+                        intent.putExtra("updateDate", item.memo2.updateDate);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
             if (item.memo3.pictures1.length != 0) {
                 //byte[]をbitmapに変更、setする。
                 Bitmap bitmap = BitmapFactory.decodeByteArray(item.memo3.pictures1, 0, item.memo3.pictures1.length);
                 viewHolder.imageView3.setImageBitmap(bitmap);
+
+                //再度編集するためのonClick。とりあえずコメントアウト。
+                viewHolder.imageView3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(), ShowActivity.class);
+                        intent.putExtra("updateDate", item.memo3.updateDate);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
-
-
-//            //再度編集するためのonClick。とりあえずコメントアウト。
-//            viewHolder.imageView1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent = new Intent(, ShowActivity.class);
-            //TODO:ここの第一引数が分からない。教科書によると、ListViewに直接OnClickListenerをつけても良さそう
-//                    startActivity(intent);
-//                }
-//            });
         }
         return convertView;
         //realm.close();

@@ -1,5 +1,7 @@
 package com.tokunaga.kensun.memory;
 
+import java.util.Arrays;
+
 import io.realm.RealmObject;
 
 public class Memo extends RealmObject {
@@ -17,7 +19,21 @@ public class Memo extends RealmObject {
     String episode = "";
 
 
-
+    @Override
+    public String toString() {
+        return "Memo{" +
+                "pictures1=" + pictures1.length+
+                ", pictures2=" + pictures2.length +
+                ", pictures3=" + pictures3.length +
+                ", pictures4=" + pictures4.length +
+                ", pictures5=" + pictures5.length +
+                ", updateDate='" + updateDate + '\'' +
+                ", title='" + title + '\'' +
+                ", time='" + time + '\'' +
+                ", folder='" + folder + '\'' +
+                ", episode='" + episode + '\'' +
+                '}';
+    }
 }
 
 
