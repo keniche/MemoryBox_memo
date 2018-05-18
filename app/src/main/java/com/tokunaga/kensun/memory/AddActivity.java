@@ -44,11 +44,11 @@ public class AddActivity extends AppCompatActivity {
         episodeEditText = (EditText) findViewById(R.id.episodeEditText);
 
 
-        int[] imageList = {R.drawable.icon_grey_1,
-                R.drawable.icon_grey_2,
-                R.drawable.icon_grey_3,
-                R.drawable.icon_grey_4,
-                R.drawable.icon_grey_5};
+        int[] imageList = {R.drawable.icon_image_1,
+                R.drawable.icon_image_2,
+                R.drawable.icon_image_3,
+                R.drawable.icon_image_4,
+                R.drawable.icon_image_5};
 
         pagerAdapter = new FragmentAdapter(getSupportFragmentManager(), imageList);
         viewPager.setAdapter(pagerAdapter);

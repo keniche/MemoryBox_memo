@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
 
-        //TODO:そもそも、3つのimageViewをひとまとめのものとしてListViewに入れているので、個別でonClickができる訳がない？
+//        //TODO:そもそも、3つのimageViewをひとまとめのものとしてListViewに入れているので、個別でonClickができる訳がない？
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id){

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CEDFA5"
     tools:context="com.tokunaga.kensun.memory.AddActivity">
 
     <LinearLayout
@@ -19,133 +20,104 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="190dp"
                 android:layout_gravity="center" />
+
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            app:cardBackgroundColor="#F6FAEC">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="タイトル"
-                android:textAlignment="viewStart"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/titleEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="いつ"
-                android:textAlignment="viewStart"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/timeEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="フォルダ"
-                android:textAlignment="viewStart"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/folderEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:singleLine="true"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="エピソード"
-                android:textAlignment="viewStart"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/episodeEditText"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center" />
-        </LinearLayout>
+                android:layout_margin="16dp"
+                android:orientation="vertical">
 
+                <EditText
+                    android:id="@+id/titleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="title"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/timeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="time"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/folderEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="folder"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/episodeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="episode"
+                    android:inputType="textPersonName"
+                    android:textAlignment="viewStart"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="0.2"
+            android:onClick="add"
+            app:cardBackgroundColor="#F6FAEC">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Confirm" />
+        </android.support.v7.widget.CardView>
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:onClick="add"
-        android:src="@drawable/ic_plus"
-        android:text="作成"
-        app:fabSize="normal" />
 
 </RelativeLayout>

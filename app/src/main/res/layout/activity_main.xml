@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6FAEC"
     tools:context="com.tokunaga.kensun.memory.MainActivity">
 
     <ListView
@@ -22,6 +23,7 @@
         android:onClick="add"
         android:src="@drawable/ic_plus"
         android:text="作成"
+        app:backgroundTint="#CEDFA5"
         app:fabSize="normal" />
 
 </RelativeLayout>
