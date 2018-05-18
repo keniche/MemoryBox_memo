@@ -22,7 +22,7 @@ public class Memo extends RealmObject {
     @Override
     public String toString() {
         return "Memo{" +
-                "pictures1=" + pictures1.length+
+                "pictures1=" + pictures1.length +
                 ", pictures2=" + pictures2.length +
                 ", pictures3=" + pictures3.length +
                 ", pictures4=" + pictures4.length +

@@ -30,7 +30,7 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 
-public class MemoryFragment extends Fragment implements View.OnClickListener{
+public class MemoryFragment extends Fragment implements View.OnClickListener {
     int position;
     static final int REQUEST_CODE_GALLERY = 1;
 
@@ -66,7 +66,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener{
 
             Resources res = getContext().getResources();
             Drawable drawable = res.getDrawable(args.getInt("image_id"));
-            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             pictures = stream.toByteArray();
@@ -109,7 +109,7 @@ public class MemoryFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        memoryFragmentListener = (MemoryFragmentListener)activity;
+        memoryFragmentListener = (MemoryFragmentListener) activity;
 
     }
 
@@ -120,8 +120,8 @@ public class MemoryFragment extends Fragment implements View.OnClickListener{
         realm.close();
     }
 
-    public byte[] getImage(){
-        Bitmap bitmap =  ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+    public byte[] getImage() {
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         //bitmapをbyteに変える
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
@@ -129,15 +129,16 @@ public class MemoryFragment extends Fragment implements View.OnClickListener{
         return pictures;
 
     }
-    public void setImage(Bitmap bitmap){
-        Log.e("TAG",imageView.toString());
+
+    public void setImage(Bitmap bitmap) {
+        Log.e("TAG", imageView.toString());
         imageView.setImageBitmap(bitmap);
     }
 
-    public void enableListener(Boolean enable){
-        if (enable){
+    public void enableListener(Boolean enable) {
+        if (enable) {
             imageView.setOnClickListener(this);
-        }else {
+        } else {
             imageView.setOnClickListener(null);
         }
     }

@@ -54,7 +54,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public Fragment getFragment(int position) {
         String tag = mFragmentTags.get(position);
         if (tag == null) {
-            Log.e("TAGNull","Null");
+            Log.e("TAGNull", "Null");
             return null;
         }
         return mFragmentManager.findFragmentByTag(tag);

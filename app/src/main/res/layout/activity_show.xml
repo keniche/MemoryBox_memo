@@ -73,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
+                        android:singleLine="false"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -84,37 +85,73 @@
                     android:layout_margin="16dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/titleText"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_weight="1"
-                        android:text="titleText"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/timeText"
+                        <TextView
+                            android:id="@+id/titleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="titleText"
+                            android:textAlignment="viewStart"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_weight="1"
-                        android:text="timeText"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/folderText"
+                        <TextView
+                            android:id="@+id/timeText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="timeText"
+                            android:textAlignment="viewStart"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginLeft="3dp"
                         android:layout_weight="1"
-                        android:text="folderText"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/episodeText"
+                        <TextView
+                            android:id="@+id/folderText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="folderText"
+                            android:textAlignment="viewStart"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:text="episodeText"
-                        android:textSize="15sp" />
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/episodeText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="episodeText"
+                            android:textAlignment="viewStart"
+                            android:textSize="15sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </FrameLayout>
